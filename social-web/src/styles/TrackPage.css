@@ -1,0 +1,454 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body,
+#root {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: #eef3f8;
+    overflow: auto;
+}
+
+.track-container {
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 15px;
+
+    background: #eef3f8;
+
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr) 360px;
+
+    grid-template-areas:
+        "camera panel";
+
+    gap: 15px;
+}
+
+.camera-container {
+    grid-area: camera;
+
+    position: relative;
+
+    width: 100%;
+    height: calc(100vh - 30px);
+
+    min-width: 0;
+    min-height: 0;
+
+    background: #000;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.webcam {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    background: #000;
+
+    border: 4px solid #1976d2;
+
+    border-radius: 18px;
+}
+
+.pose-canvas {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+}
+
+.exercise-card {
+    grid-area: panel;
+
+    position: relative;
+
+    width: 100%;
+    height: calc(100vh - 30px);
+
+    margin: 0;
+
+    padding: 25px 20px;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    border-top: 5px solid #1976d2;
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+    overflow-y: auto;
+}
+
+.exercise-card h3 {
+    margin: 5px 0 18px;
+
+    color: #1976d2;
+
+    font-size: 26px;
+
+    font-weight: 700;
+}
+
+.track-description {
+    width: 100%;
+
+    margin: 0 0 22px;
+
+    padding: 14px;
+
+    background: #f3f7fc;
+
+    border-radius: 12px;
+
+    color: #555;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+
+    text-align: center;
+}
+
+.exercise-select {
+    width: 90%;
+
+    padding: 9px 12px;
+
+    margin-bottom: 18px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #111827;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    outline: none;
+}
+
+.exercise-select:focus {
+    border-color: #1976d2;
+
+    box-shadow:
+        0 0 0 2px rgba(25, 118, 210, 0.15);
+}
+
+.exercise-card > p:not(.track-description) {
+    margin: 5px 0 20px;
+
+    color: #111827;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    line-height: 1.4;
+}
+
+.exercise-card h2 {
+    margin: 8px 0;
+
+    color: #111827;
+
+    font-size: 36px;
+
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+.exercise-card h2:last-child {
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 10px;
+
+    background: #e8f5e9;
+
+    border-radius: 10px;
+
+    color: #2e7d32;
+
+    font-size: 22px;
+}
+
+.tracking-btn {
+    width: 100%;
+
+    margin-top: auto;
+
+    padding: 13px 18px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #1976d2;
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 18px rgba(25, 118, 210, 0.3);
+
+    transition:
+        background 0.25s ease,
+        transform 0.2s ease,
+        box-shadow 0.25s ease;
+}
+
+.tracking-btn:hover {
+    background: #125ea8;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 22px rgba(25, 118, 210, 0.4);
+}
+
+.tracking-btn:active {
+    transform: translateY(0);
+}
+
+.tracking-btn:disabled {
+    background: #9ca3af;
+
+    cursor: not-allowed;
+
+    box-shadow: none;
+
+    transform: none;
+}
+
+@media (max-width: 1100px) {
+
+    .track-container {
+        grid-template-columns:
+            minmax(0, 1fr) 320px;
+
+        gap: 12px;
+
+        padding: 12px;
+    }
+
+    .camera-container,
+    .exercise-card {
+        height: calc(100vh - 24px);
+    }
+
+    .exercise-card {
+        padding: 22px 17px;
+    }
+
+    .exercise-card h3 {
+        font-size: 24px;
+    }
+
+    .track-description {
+        font-size: 13px;
+
+        padding: 12px;
+    }
+
+    .exercise-card > p:not(.track-description) {
+        font-size: 17px;
+    }
+
+    .exercise-card h2 {
+        font-size: 32px;
+    }
+
+    .exercise-card h2:last-child {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 800px) {
+
+    .track-container {
+        width: 100%;
+
+        min-height: 100vh;
+
+        grid-template-columns: 1fr;
+
+        grid-template-rows:
+            65vh
+            auto;
+
+        grid-template-areas:
+            "camera"
+            "panel";
+
+        gap: 12px;
+
+        padding: 10px;
+    }
+
+    .camera-container {
+        width: 100%;
+
+        height: 65vh;
+
+        min-height: 400px;
+    }
+
+    .exercise-card {
+        width: 100%;
+
+        height: auto;
+
+        min-height: 430px;
+
+        padding: 25px 20px;
+
+        overflow: visible;
+    }
+
+    .exercise-card h3 {
+        font-size: 25px;
+    }
+
+    .track-description {
+        max-width: 600px;
+
+        font-size: 14px;
+    }
+
+    .exercise-card > p:not(.track-description) {
+        font-size: 18px;
+    }
+
+    .exercise-card h2 {
+        font-size: 36px;
+    }
+
+    .exercise-card h2:last-child {
+        font-size: 22px;
+    }
+
+    .tracking-btn {
+        margin-top: 25px;
+
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .track-container {
+        padding: 8px;
+
+        gap: 10px;
+    }
+
+    .camera-container {
+        height: 55vh;
+
+        min-height: 320px;
+
+        border-radius: 12px;
+    }
+
+    .webcam {
+        border-width: 3px;
+
+        border-radius: 12px;
+    }
+
+    .exercise-card {
+        min-height: 400px;
+
+        padding: 20px 15px;
+
+        border-radius: 12px;
+    }
+
+    .exercise-card h3 {
+        font-size: 22px;
+
+        margin-bottom: 15px;
+    }
+
+    .track-description {
+        margin-bottom: 18px;
+
+        padding: 12px;
+
+        font-size: 13px;
+    }
+
+    .exercise-select {
+        width: 100%;
+
+        font-size: 13px;
+    }
+
+    .exercise-card > p:not(.track-description) {
+        font-size: 17px;
+
+        margin-bottom: 15px;
+    }
+
+    .exercise-card h2 {
+        font-size: 32px;
+    }
+
+    .exercise-card h2:last-child {
+        font-size: 20px;
+    }
+
+    .tracking-btn {
+        padding: 12px 16px;
+
+        font-size: 15px;
+    }
+}

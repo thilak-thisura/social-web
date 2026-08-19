@@ -1,0 +1,263 @@
+.rehab-users-page {
+    min-height: 100vh;
+
+    padding: 35px;
+
+    background: #eef3f8;
+}
+
+
+/* ============================= */
+/* HEADER */
+/* ============================= */
+
+.rehab-users-header {
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: 0 auto 30px;
+
+    text-align: center;
+}
+
+
+.rehab-users-header h1 {
+    margin: 0 0 8px;
+
+    color: #1976d2;
+
+    font-size: 30px;
+
+    font-weight: 700;
+}
+
+
+.rehab-users-header p {
+    margin: 0;
+
+    color: #607080;
+
+    font-size: 15px;
+}
+
+
+/* ============================= */
+/* USER LIST */
+/* ============================= */
+
+.rehab-users-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+}
+
+
+/* ============================= */
+/* USER CARD */
+/* ============================= */
+
+.rehab-user-card {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    width: 100%;
+
+    min-height: 125px;
+
+    padding: 25px 32px;
+
+    background: #ffffff;
+
+    border: 1px solid #e3eaf2;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 4px 15px rgba(31, 58, 86, 0.07);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.rehab-user-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 22px rgba(31, 58, 86, 0.10);
+}
+
+
+/* ============================= */
+/* USER INFORMATION */
+/* ============================= */
+
+.rehab-user-info {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    text-align: left;
+}
+
+
+.rehab-user-info h3 {
+    margin: 0 0 7px;
+
+    color: #1f3448;
+
+    font-size: 21px;
+
+    font-weight: 650;
+}
+
+
+.rehab-user-info p {
+    margin: 0;
+
+    color: #6c7b89;
+
+    font-size: 14px;
+}
+
+
+/* ============================= */
+/* VIEW PROGRESS BUTTON */
+/* ============================= */
+
+.view-progress-btn {
+    min-width: 170px;
+
+    padding: 12px 20px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #1976d2;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.view-progress-btn:hover {
+    background: #1565b3;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 12px rgba(25, 118, 210, 0.22);
+}
+
+
+.view-progress-btn:active {
+    transform: translateY(0);
+}
+
+
+/* ============================= */
+/* TABLET */
+/* ============================= */
+
+@media (max-width: 900px) {
+
+    .rehab-users-page {
+        padding: 30px 20px;
+    }
+
+
+    .rehab-users-list {
+        max-width: 750px;
+    }
+
+
+    .rehab-users-header {
+        max-width: 750px;
+    }
+
+}
+
+
+/* ============================= */
+/* MOBILE */
+/* ============================= */
+
+@media (max-width: 600px) {
+
+    .rehab-users-page {
+        padding: 20px 15px;
+    }
+
+
+    .rehab-users-header {
+        margin-bottom: 22px;
+    }
+
+
+    .rehab-users-header h1 {
+        font-size: 25px;
+    }
+
+
+    .rehab-users-header p {
+        font-size: 14px;
+    }
+
+
+    .rehab-user-card {
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 18px;
+
+        min-height: auto;
+
+        padding: 25px 20px;
+
+        text-align: center;
+    }
+
+
+    .rehab-user-info {
+        align-items: center;
+
+        text-align: center;
+    }
+
+
+    .view-progress-btn {
+        width: 100%;
+
+        max-width: 250px;
+    }
+
+}
