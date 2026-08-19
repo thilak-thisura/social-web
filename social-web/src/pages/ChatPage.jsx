@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 import { getChatList } from "../services/chatApi";
 
+import socket from "../services/socket";
+
 import {
     getMessages,
     sendChatMessage,
@@ -98,6 +100,110 @@ function ChatPage() {
         }
 
     };
+
+    // ==========================================
+    // SOCKET.IO REAL-TIME MESSAGES
+    // ==========================================
+
+    useEffect(() => {
+
+        if (!loggedInUserId) {
+            return;
+        }
+
+
+        // Give Socket.IO the logged-in user's ID
+
+        socket.auth = {
+            userId: loggedInUserId
+        };
+
+
+        // Connect socket
+
+        socket.connect();
+
+
+        // Receive new message
+
+        const handleReceiveMessage = (newMessage) => {
+
+            console.log(
+                "Real-time message received:",
+                newMessage
+            );
+
+
+            // Check whether this message
+            // belongs to the currently open chat
+
+            const isCurrentChat =
+                selectedChat &&
+                (
+                    (
+                        newMessage.sender_id ===
+                        selectedChat.id
+                    )
+                    ||
+                    (
+                        newMessage.receiver_id ===
+                        selectedChat.id
+                    )
+                );
+
+
+            if (isCurrentChat) {
+
+                setMessages(
+                    (previousMessages) => {
+
+                        // Prevent duplicate messages
+
+                        const alreadyExists =
+                            previousMessages.some(
+                                (item) =>
+                                    item.id ===
+                                    newMessage.id
+                            );
+
+
+                        if (alreadyExists) {
+                            return previousMessages;
+                        }
+
+
+                        return [
+                            ...previousMessages,
+                            newMessage
+                        ];
+
+                    }
+                );
+
+            }
+
+        };
+
+
+        socket.on(
+            "receive_message",
+            handleReceiveMessage
+        );
+
+
+        return () => {
+
+            socket.off(
+                "receive_message",
+                handleReceiveMessage
+            );
+
+        };
+
+    }, [
+        loggedInUserId,
+        selectedChat
+    ]);
 
 
     // ==========================================
