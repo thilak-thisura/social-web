@@ -195,21 +195,24 @@ router.get(
 
         const sql = `
             SELECT
-                id,
-                user_id,
-                exercise_id,
-                exercise_name,
-                total_reps,
-                good_reps,
-                medium_reps,
-                low_reps,
-                best_angle,
-                overall_score,
-                duration_seconds,
-                created_at
-            FROM rehabilitation_sessions
-            WHERE user_id = ?
-            ORDER BY created_at DESC
+            rs.id,
+            rs.user_id,
+            rs.exercise_id,
+            rs.exercise_name,
+            rs.total_reps,
+            rs.good_reps,
+            rs.medium_reps,
+            rs.low_reps,
+            rs.best_angle,
+            rs.overall_score,
+            rs.duration_seconds,
+            rs.created_at
+            FROM rehabilitation_sessions rs
+            INNER JOIN users u
+                ON rs.user_id = u.id
+            WHERE rs.user_id = ?
+                AND u.role_type != 'admin'
+            ORDER BY rs.created_at
         `;
 
         db.query(

@@ -186,15 +186,24 @@ router.get(
                 profile_picture,
                 role_type
             FROM users
-            ORDER BY id DESC
+            WHERE role_type != 'admin'
+            ORDER BY id 
         `;
 
         db.query(sql, (err, results) => {
 
             if (err) {
+
+                console.error(
+                    "Get users database error:",
+                    err
+                );
+
                 return res.status(500).json({
-                    message: 'Database Error'
+                    message: 'Database Error',
+                    error: err.message
                 });
+
             }
 
             res.json(results);
